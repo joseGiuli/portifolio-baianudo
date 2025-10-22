@@ -198,3 +198,4 @@ Tudo está **pronto e testado**. Sua aplicação agora:
 **Versão:** 1.0  
 **Status:** ✅ Pronto para uso
 
+

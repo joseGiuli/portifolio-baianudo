@@ -47,3 +47,4 @@ Substitua o valor de `DATABASE_URL` pela Connection String que você copiou do N
 
 Altere `ADMIN_EMAIL` e `ADMIN_PASSWORD` com suas credenciais desejadas.
 
+
