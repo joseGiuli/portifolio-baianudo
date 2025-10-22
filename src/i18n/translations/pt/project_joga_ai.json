@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "title": "App Joga Aí",
+    "subtitle": "Agendamento de quadras de forma simples e prática",
+    "meta": [
+      { "label": "Cliente", "value": "Projeto Pessoal" },
+      { "label": "Ramo", "value": "Aluguel de Quadras" },
+      { "label": "Serviços", "value": "Product Designer" },
+      { "label": "Data", "value": "Outubro 2024" }
+    ],
+    "backLabel": "Voltar"
+  },
+  "headings": {
+    "challenge": "Desafio",
+    "solution": "Solução",
+    "learnings": "Aprendizados"
+  },
+  "body": {
+    "p1": "A prática de esportes entre amigos é algo comum em várias cidades, mas agendar uma quadra ainda é uma tarefa cheia de obstáculos. Muitos usuários ainda precisam ligar, mandar mensagens ou contar com indicações para conseguir reservar um espaço. Pensando nisso, desenvolvi o JogaAí, um aplicativo que simplifica o processo de encontrar e reservar quadras poliesportivas, como futebol society, beach tennis, futevôlei e basquete.",
+    "p2": "Esse projeto foi criado como estudo de caso, com o objetivo de explorar todo o processo de UX e UI Design, desde a pesquisa até a entrega de telas finais, passando por entrevistas, definição de personas, jornada do usuário e prototipagem.",
+    "p3": "Quem joga futebol, beach tennis, basquete ou futevôlei com os amigos sabe como pode ser complicado reservar uma quadra. Às vezes não dá pra saber onde tem quadra disponível, os preços variam muito, nem sempre tem foto do lugar, e o processo acaba ficando nas mãos de alguém que precisa ligar, negociar e organizar tudo por conta própria. Isso consome tempo, causa confusão e, muitas vezes, desanima quem só queria jogar.",
+    "p4": "O desafio foi criar uma solução digital que resolvesse esses obstáculos de forma prática. Um app que ajudasse as pessoas a encontrarem quadras com facilidade, visualizarem horários disponíveis, entenderem os valores e fazerem a reserva direto pelo celular. Mais do que facilitar, o objetivo era deixar todo esse processo mais acessível, transparente e organizado para quem quer manter o esporte como parte da rotina.",
+    "p5": "O JogaAí foi criado para transformar a experiência de quem busca praticar esportes com mais praticidade. A proposta foi desenvolver um app que resolvesse, de forma simples e eficiente, todas as etapas envolvidas na reserva de uma quadra, sem a necessidade de usar diferentes canais ou depender de ligações e mensagens.",
+    "p6": "Dentro do app, o usuário pode buscar quadras filtrando por tipo de esporte, localização, preço e horários disponíveis. Cada quadra traz informações detalhadas, como fotos reais do espaço, formas de pagamento aceitas, avaliações de outros usuários e políticas do local. Um dos diferenciais é a possibilidade de entrar em uma lista de espera para ser notificado caso o horário desejado fique disponível, evitando a frustração de perder oportunidades por lotação.",
+    "p7": "Além disso, o app permite criar grupos fixos com amigos, facilitando agendamentos futuros com os mesmos participantes, e ainda oferece um histórico de reservas para quem costuma repetir os locais. Outro recurso que se destaca é o chat direto com os administradores das quadras, permitindo tirar dúvidas de forma rápida e centralizada. Tudo isso dentro de uma interface clara, com uma navegação pensada para ser fluida, objetiva e acessível.",
+    "p8": "O JogaAí não só otimiza o processo de reserva como também aproxima o usuário da experiência esportiva com mais autonomia, organização e confiança.",
+    "bullets": [
+      "Explorar o contexto antes de propor soluções evita retrabalho e ideias rasas.",
+      "Documentar cada etapa com clareza ajuda a tomar decisões melhores depois.",
+      "Conversar com pessoas que realmente vivem o problema muda a direção do projeto.",
+      "Um bom fluxo não precisa ser complexo, precisa ser lógico para quem está usando."
+    ],
+    "figma_cta": "Ver arquivo no Figma"
+  },
+  "images": {
+    "main_alt": ""
+  }
+}

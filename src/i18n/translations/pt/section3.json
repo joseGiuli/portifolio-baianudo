@@ -1,0 +1,35 @@
+{
+  "heading": "Formação acadêmica",
+  "download_cv": "Ver currículo completo",
+  "education": [
+    {
+      "titulo": "Bacharelado em Administração",
+      "periodo": { "inicio": "Fev 2019", "fim": "Dez 2023" },
+      "instituicao": "Universidade Paulista",
+      "descricao": "Foco em gestão, estratégia e análise de negócios, com desenvolvimento de habilidades em comunicação, tomada de decisão e resolução de problemas."
+    },
+    {
+      "titulo": "Certificação em Product Designer",
+      "periodo": { "inicio": "Jan 2025", "fim": "Jul 2025" },
+      "instituicao": "PM3",
+      "descricao": "Formação com foco em design de produto digital, explorando processos de descoberta, definição, ideação, prototipação e validação, com abordagem centrada no usuário e alinhada a objetivos de negócio."
+    },
+    {
+      "titulo": "Pós Graduação Lato Sensu em UX Design",
+      "periodo": { "inicio": "Jan 2025", "fim": "Nov 2025" },
+      "instituicao": "Senac",
+      "descricao": "Especialização com foco no desenvolvimento de projetos para ambientes físicos, digitais e híbridos, aplicando princípios de design centrado no usuário, arquitetura da informação, usabilidade e prototipação."
+    }
+  ],
+  "skills": {
+    "title": "Skills",
+    "items": [
+      { "label": "UX Design", "value": 88 },
+      { "label": "UI Design", "value": 88 },
+      { "label": "UX Research", "value": 60 },
+      { "label": "Figma", "value": 94 },
+      { "label": "Design System", "value": 75 },
+      { "label": "Prototipação e Testes de Usabilidade", "value": 80 }
+    ]
+  }
+}

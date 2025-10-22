@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "title": "Spotify Mood Check",
+    "subtitle": "Projeto focado em experiência emocional dentro do Spotify",
+    "meta": [
+      { "label": "Cliente", "value": "Spotify" },
+      { "label": "Ramo", "value": "Streaming" },
+      { "label": "Serviços", "value": "Product Designer" },
+      { "label": "Data", "value": "Julho 2025" }
+    ],
+    "backLabel": "Voltar"
+  },
+  "headings": {
+    "challenge": "Desafio",
+    "solution": "Solução",
+    "learnings": "Aprendizados"
+  },
+  "body": {
+    "p1": "Esse projeto foi desenvolvido como parte de um desafio do curso de Product Design da PM3. O objetivo era criar uma nova experiência dentro do Spotify que tornasse a descoberta de músicas mais conectada com o estado emocional do usuário.",
+    "p2": "A proposta era ir além das recomendações baseadas apenas no histórico de escuta e explorar como o app poderia entender como a pessoa está se sentindo no momento em que decide ouvir música. O projeto foi guiado por entrevistas com usuários, análise de comportamento e testes de solução com foco em simplicidade, empatia e conexão emocional.",
+    "p3": "O desafio partiu de uma proposta do curso de Product Design da PM3: criar uma nova funcionalidade para o Spotify que melhorasse a experiência de descoberta musical, considerando o estado emocional do usuário.",
+    "p4": "Apesar do Spotify oferecer recomendações personalizadas com base no histórico, ele ainda não leva em conta como a pessoa está se sentindo no momento. Muitos usuários acabam navegando por várias playlists até encontrar algo que realmente combine com o seu humor. E mesmo quando buscam por termos como feliz ou triste, as playlists disponíveis são genéricas e nem sempre refletem com precisão o que o usuário está sentindo.",
+    "p5": "Essa busca se torna cansativa, pouco intuitiva e, em muitos casos, frustrante. Principalmente quando o que a pessoa precisa é só dar play em algo que faça sentido com o seu sentimento ou emoção atual.",
+    "p6": "A solução encontrada foi o Mood Check, uma funcionalidade simples e integrada ao Spotify que permite ao usuário compartilhar como está se sentindo no momento. A partir dessa interação rápida, o app gera uma playlist personalizada que reflete o humor do usuário, combinando inteligência artificial com o histórico de escuta para entregar músicas que realmente façam sentido naquele instante.",
+    "p7": "O recurso foi pensado para ser leve e opcional. Ele pode aparecer até duas vezes ao dia de forma sutil, sem interromper a experiência. O usuário pode digitar livremente seu mood ou escolher entre sugestões rápidas e, em poucos segundos, receber uma playlist criada para aquele momento.",
+    "p8": "Com isso, a descoberta musical se torna mais fluida, emocional e conectada à realidade do usuário, evitando a frustração de buscar e testar várias playlists genéricas.",
+    "bullets": [
+      "Conduzir pesquisas qualitativas auxilia a entender as motivações e frustrações dos usuários de maneira mais profunda.",
+      "Mapear a jornada do usuário ajuda a visualizar pontos de dor e oportunidades de forma estratégica.",
+      "O valor de criar soluções simples e opcionais para evitar fricção na experiência.",
+      "Decisões de design devem sempre equilibrar tecnologia, viabilidade e real necessidade do usuário.",
+      "UX Writing e microinterações podem mudar totalmente a forma como o usuário enxerga uma nova funcionalidade."
+    ],
+    "figma_cta": "Ver arquivo no Figma"
+  },
+  "images": {
+    "main_alt": ""
+  }
+}

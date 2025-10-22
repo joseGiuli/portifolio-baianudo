@@ -1,0 +1,14 @@
+{
+  "footer": {
+    "copyright": "© All rights reserved",
+    "author": "Lucas Souza",
+    "year": "2025"
+  },
+  "error": {
+    "title": "AN ERROR OCCURRED :(",
+    "link": "Click here and try again"
+  },
+  "loader": {
+    "loading": "LOADING..."
+  }
+}

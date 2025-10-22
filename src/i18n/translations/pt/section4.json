@@ -1,0 +1,9 @@
+{
+  "heading": "Projetos",
+  "description": "Uma seleção de projetos em que atuei ajudando a transformar desafios em soluções reais.",
+  "projects": [
+    { "title": "| Projeto profissional |", "name": "Ecori app" },
+    { "title": "| Estudo de caso |", "name": "Spotify Mood Check" },
+    { "title": "| Estudo de caso |", "name": "Joga Aí" }
+  ]
+}

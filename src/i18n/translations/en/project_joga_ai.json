@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "title": "Joga Aí App",
+    "subtitle": "Court booking made simple and practical",
+    "meta": [
+      { "label": "Client", "value": "Personal Project" },
+      { "label": "Industry", "value": "Court Rentals" },
+      { "label": "Services", "value": "Product Designer" },
+      { "label": "Date", "value": "October 2024" }
+    ],
+    "backLabel": "Back"
+  },
+  "headings": {
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "learnings": "Learnings"
+  },
+  "body": {
+    "p1": "Playing sports with friends is common in many cities, but booking a court is still full of obstacles. Many users still need to call, send messages or rely on referrals to reserve a space. With that in mind, I developed JogaAí, an app that simplifies the process of finding and booking multi-sport courts such as five-a-side soccer, beach tennis, footvolley and basketball.",
+    "p2": "This project was created as a case study, with the goal of exploring the entire UX and UI Design process, from research to final screens, including interviews, persona definition, user journey and prototyping.",
+    "p3": "Anyone who plays soccer, beach tennis, basketball or footvolley with friends knows how complicated it can be to book a court. Sometimes it’s hard to know where courts are available, prices vary a lot, there aren’t always photos of the place, and the process ends up in the hands of someone who has to call, negotiate and organize everything on their own. This takes time, causes confusion and often discourages those who just wanted to play.",
+    "p4": "The challenge was to create a digital solution that would address these obstacles in a practical way. An app that would help people easily find courts, view available times, understand prices and make reservations directly on their phone. More than making it easier, the goal was to make the whole process more accessible, transparent and organized for those who want to keep sports as part of their routine.",
+    "p5": "JogaAí was created to transform the experience for those who want to practice sports more conveniently. The proposal was to develop an app that would solve, simply and efficiently, all stages involved in booking a court, without the need to use different channels or rely on calls and messages.",
+    "p6": "Within the app, the user can search for courts by filtering by sport type, location, price and available times. Each court provides detailed information such as real photos of the space, accepted payment methods, reviews from other users and venue policies. One of the differentiators is the ability to join a waiting list to be notified if the desired time becomes available, avoiding the frustration of missing opportunities due to full bookings.",
+    "p7": "In addition, the app allows the creation of fixed groups with friends, making future bookings with the same participants easier, and also offers a reservation history for those who tend to repeat locations. Another standout feature is the direct chat with court administrators, allowing users to quickly and centrally ask questions. All this within a clear interface, with navigation designed to be fluid, objective and accessible.",
+    "p8": "JogaAí not only optimizes the reservation process but also brings the user closer to the sports experience with more autonomy, organization and confidence.",
+    "bullets": [
+      "Exploring context before proposing solutions avoids rework and shallow ideas.",
+      "Documenting each step clearly helps make better decisions later.",
+      "Talking to people who truly experience the problem changes the project's direction.",
+      "A good flow doesn’t need to be complex; it needs to be logical for the user."
+    ],
+    "figma_cta": "View file in Figma"
+  },
+  "images": {
+    "main_alt": ""
+  }
+}

@@ -1,0 +1,40 @@
+# ====================================
+# COPIE ESTE CONTEÚDO PARA O SEU ARQUIVO .env.local
+# ====================================
+
+# Crie um arquivo chamado ".env.local" na raiz do projeto
+# E cole o conteúdo abaixo, substituindo pelos seus valores:
+
+# ====================================
+# CLOUDINARY - Upload de Imagens
+# ====================================
+# Obtenha suas credenciais em: https://console.cloudinary.com/
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=seu_cloud_name_aqui
+CLOUDINARY_API_KEY=sua_api_key_aqui
+CLOUDINARY_API_SECRET=seu_api_secret_aqui
+
+# ====================================
+# NEXTAUTH - Autenticação
+# ====================================
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=sua_secret_key_aleatoria_super_segura_aqui
+
+# Para gerar uma NEXTAUTH_SECRET segura, execute no terminal:
+# node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+
+# ====================================
+# EXEMPLO COM VALORES FICTÍCIOS:
+# ====================================
+# NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=dkj8ktaij
+# CLOUDINARY_API_KEY=427447545624745
+# CLOUDINARY_API_SECRET=kZjuOzKZX0TZzvkAxBCLUfc0MKM
+# NEXTAUTH_URL=http://localhost:3000
+# NEXTAUTH_SECRET=xYz123AbC456DeF789GhI012JkL345MnO678PqR901StU234VwX567YzA890BcD
+
+# ====================================
+# IMPORTANTE:
+# ====================================
+# 1. NUNCA compartilhe este arquivo no Git
+# 2. NUNCA envie para repositórios públicos
+# 3. Para deploy na Vercel, adicione as variáveis no dashboard
+

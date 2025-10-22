@@ -1,0 +1,39 @@
+{
+  "hero": {
+    "title": "Spotify Mood Check",
+    "subtitle": "Project focused on emotional experience within Spotify",
+    "meta": [
+      { "label": "Client", "value": "Spotify" },
+      { "label": "Industry", "value": "Streaming" },
+      { "label": "Services", "value": "Product Designer" },
+      { "label": "Date", "value": "July 2025" }
+    ],
+    "backLabel": "Back"
+  },
+  "headings": {
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "learnings": "Learnings"
+  },
+  "body": {
+    "p1": "This project was developed as part of a challenge in PM3's Product Design course. The goal was to create a new experience within Spotify that made music discovery more connected to the user's emotional state.",
+    "p2": "The proposal was to go beyond recommendations based solely on listening history and explore how the app could understand how a person is feeling at the moment they decide to listen to music. The project was guided by user interviews, behavior analysis, and solution testing focused on simplicity, empathy, and emotional connection.",
+    "p3": "The challenge came from a proposal in the Product Design course at PM3: create a new feature for Spotify that improves the music discovery experience, considering the user's emotional state.",
+    "p4": "Although Spotify offers personalized recommendations based on history, it still doesn't take into account how the person is feeling at the moment. Many users end up browsing through several playlists until they find something that really matches their mood. Even when they search for terms like happy or sad, the available playlists are generic and don't always accurately reflect what the user is feeling.",
+    "p5": "This search becomes tiring, unintuitive, and in many cases frustrating. Especially when all the person needs is to hit play on something that makes sense with their current feeling or emotion.",
+    "p6": "The solution found was Mood Check, a simple feature integrated into Spotify that allows the user to share how they are feeling at the moment. From this quick interaction, the app generates a personalized playlist that reflects the user's mood, combining artificial intelligence with listening history to deliver songs that really make sense at that moment.",
+    "p7": "The feature was designed to be lightweight and optional. It can appear up to twice a day in a subtle way, without interrupting the experience. The user can freely type their mood or choose from quick suggestions and, in a few seconds, receive a playlist created for that moment.",
+    "p8": "With this, music discovery becomes more fluid, emotional and connected to the user's reality, avoiding the frustration of browsing and testing multiple generic playlists.",
+    "bullets": [
+      "Conducting qualitative research helps to understand users' motivations and frustrations more deeply.",
+      "Mapping the user journey helps visualize pain points and opportunities strategically.",
+      "The value of creating simple and optional solutions to avoid friction in the experience.",
+      "Design decisions should always balance technology, feasibility and the user's real need.",
+      "UX Writing and microinteractions can completely change how users perceive a new feature."
+    ],
+    "figma_cta": "View file in Figma"
+  },
+  "images": {
+    "main_alt": ""
+  }
+}

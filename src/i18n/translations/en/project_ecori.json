@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "title": "Ecori App",
+    "subtitle": "Application for solar energy services and products.",
+    "meta": [
+      { "label": "Client", "value": "Ecori Energia Solar" },
+      { "label": "Industry", "value": "Solar Energy" },
+      { "label": "Services", "value": "UX Design | UI Design" },
+      { "label": "Date", "value": "March 2024" }
+    ],
+    "backLabel": "Back"
+  },
+  "headings": {
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "learnings": "Learnings"
+  },
+  "body": {
+    "p1": "Ecori is a distributor of solar energy equipment that serves integrators throughout Brazil. For a time, the company used an app called Ecomission, focused on quality inspections of installations. This app was developed by third parties, had usability issues, confusing flows, and did not reflect the brand's visual identity, which led to its abandonment.",
+    "p2": "From this, the need arose to create a new application that would better serve users and more consistently represent the company. That's how the Ecori App was born, designed to unify the inspection feature, now called commissioning, and also bring functionalities from the web platform for quotes and orders to the mobile environment.",
+    "p3": "Ecomission, the old inspection app used by the company, had several problems that compromised the experience of field integrators. The flows were poorly structured, usability was limited, and the app's visuals had no relation to Ecori's identity. These factors made the app confusing and unreliable, directly impacting integrators' routines and generating a high volume of questions and requests to the support team.",
+    "p4": "In addition, Ecori did not have a mobile version of the platform, not even an adapted version for mobile browsers. This limited user access outside the office environment. Creating a new app represented an opportunity to improve the overall experience, allowing integrators to create quotes, track orders, and complete important tasks directly on their phones, including during client visits.",
+    "p5": "Based on the issues identified with Ecomission and the absence of a more complete mobile experience, I started the Ecori App project with the goal of creating a more functional solution, visually aligned with the brand, and designed for field use.",
+    "p6": "I began the process by listening to stakeholders and collecting feedback from users who used the previous app. Based on this information, I identified the main pain points and designed simpler, more direct flows focused on the most important tasks for integrators' daily routines.",
+    "p7": "I restructured the app's navigation and organized functionalities more logically, prioritizing quick access to quotes, orders, and commissioning. I created a cleaner, more consistent visual interface aligned with Ecori's identity, eliminating the confusing elements of the previous app.",
+    "p8": "When developing the commissioning feature, the flows were designed to accommodate different use scenarios. In cases where the inspection was performed by a team, the app allows different integrators to fill out different parts of the form. I also worked to ensure that this process could be performed offline, enabling use in remote locations without internet connection.",
+    "p9": "During development, I maintained close collaboration with the technical team, participated in design reviews and constant testing to ensure that the final version of the app accurately reflected everything planned during the research and prototyping stages.",
+    "p10": "Although the app has not yet been officially launched, tests with prototypes and internal validations have already indicated important improvements over the previous version. Users and stakeholders highlighted the clarity of flows, ease of navigation, and the usefulness of features such as offline commissioning and collaborative completion.",
+    "p11": "Another very positive point was the adaptation of web platform features to the mobile environment. The ability to generate quotes, track orders, and view information directly on the phone was seen as a real gain for integrators' daily lives, especially during client visits or activities outside the office.",
+    "p12": "The new structure brought greater visual consistency and organization, which strengthened confidence in using the tool. In addition, the foundation built with the design system opened space for future evolutions of the app, including features aimed at internal management and back-office resources.",
+    "bullets": [
+      "Adapting web to mobile requires understanding the mobile usage context without compromising the experience.",
+      "Create with a focus on future evolution, not limited solutions, to ensure scalability.",
+      "Constant feedback should guide real product adjustments, not just be an isolated final validation process.",
+      "Continuous prototyping should be used to keep all parties aligned and adjust the solution quickly.",
+      "Exploring notifications and integrations with the company's internal systems to increase engagement."
+    ]
+  },
+  "images": {
+    "flow_alt": "Ecori flow"
+  }
+}

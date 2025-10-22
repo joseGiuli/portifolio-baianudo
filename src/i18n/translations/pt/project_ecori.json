@@ -1,0 +1,43 @@
+{
+  "hero": {
+    "title": "Ecori App",
+    "subtitle": "Aplicativo de serviços e produtos de energia solar.",
+    "meta": [
+      { "label": "Cliente", "value": "Ecori Energia Solar" },
+      { "label": "Ramo", "value": "Energia Solar" },
+      { "label": "Serviços", "value": "UX Design | UI Design" },
+      { "label": "Data", "value": "Março 2024" }
+    ],
+    "backLabel": "Voltar"
+  },
+  "headings": {
+    "challenge": "Desafio",
+    "solution": "Solução",
+    "results": "Resultados",
+    "learnings": "Aprendizados"
+  },
+  "body": {
+    "p1": "A Ecori é uma distribuidora de equipamentos para energia solar que atende integradores em todo o Brasil. Por um tempo, a empresa utilizou um app chamado Ecomission, voltado para inspeções de qualidade nas instalações. Esse aplicativo foi desenvolvido por terceiros, apresentava falhas de usabilidade, fluxos confusos e não refletia a identidade visual da marca, o que levou ao seu abandono.",
+    "p2": "A partir disso, surgiu a necessidade de criar um novo aplicativo que atendesse melhor os usuários e representasse a empresa de forma mais consistente. Assim nasceu o App Ecori, pensado para unificar o recurso de inspeções, agora chamado de comissionamento, e também trazer funcionalidades da plataforma web de orçamentos e pedidos para o ambiente mobile.",
+    "p3": "O Ecomission, antigo aplicativo de inspeção utilizado pela empresa, apresentava diversos problemas que comprometiam a experiência dos integradores em campo. Os fluxos eram mal estruturados, a usabilidade era limitada e o visual do app não tinha nenhuma relação com a identidade da Ecori. Esses fatores tornavam o uso do aplicativo confuso e pouco confiável, impactando diretamente a rotina dos integradores e gerando um alto volume de dúvidas e solicitações ao time de suporte.",
+    "p4": "Além disso, a Ecori não contava com uma versão mobile da plataforma, nem mesmo uma versão adaptada para uso em navegadores de celular. Isso limitava o acesso dos usuários fora do ambiente de escritório. Criar um novo aplicativo representava uma oportunidade de melhorar a experiência como um todo, permitindo que os integradores fizessem orçamentos, acompanhassem pedidos e resolvessem tarefas importantes diretamente pelo celular, inclusive durante visitas aos clientes.",
+    "p5": "A partir dos problemas levantados com o Ecomission e da ausência de uma experiência mobile mais completa, iniciei o projeto do App Ecori com o objetivo de criar uma solução mais funcional, visualmente alinhada com a marca e pensada para o uso em campo.",
+    "p6": "Comecei o processo ouvindo stakeholders e coletando feedbacks de usuários que utilizavam o aplicativo anterior. Com base nessas informações, identifiquei os principais pontos de frustração e desenhei fluxos mais simples e diretos, focados nas tarefas mais importantes para o dia a dia dos integradores.",
+    "p7": "Reestruturei a navegação do app e organizei as funcionalidades de forma mais lógica, priorizando o acesso rápido a orçamentos, pedidos e comissionamentos. Criei uma nova interface visual mais limpa, consistente e alinhada com a identidade da Ecori, eliminando os elementos confusos do app anterior.",
+    "p8": "No desenvolvimento do recurso de comissionamento, os fluxos foram pensados para acomodar diferentes cenários de uso. Em casos onde a inspeção fosse feita por uma equipe, o app permite que diferentes integradores preencham partes distintas do formulário. Também trabalhei para garantir que esse processo pudesse ser realizado offline, possibilitando o uso em locais remotos sem conexão à internet.",
+    "p9": "Durante o desenvolvimento, mantive um acompanhamento próximo com o time técnico, participei de reviews de design e testes constantes para garantir que a versão final do app refletisse com precisão tudo o que foi planejado nas etapas de pesquisa e prototipação.",
+    "p10": "Embora o app ainda não tenha sido lançado oficialmente, os testes com protótipos e as validações internas já indicaram avanços importantes em relação à versão anterior. Usuários e stakeholders destacaram a clareza nos fluxos, a facilidade de navegação e a utilidade de recursos como o comissionamento offline e o preenchimento colaborativo.",
+    "p11": "Outro ponto bastante positivo foi a adaptação de funcionalidades da plataforma web para o ambiente mobile. A possibilidade de gerar orçamentos, acompanhar pedidos e visualizar informações diretamente pelo celular foi vista como um ganho real para o dia a dia dos integradores, especialmente durante visitas a clientes ou atividades fora do escritório.",
+    "p12": "A nova estrutura trouxe mais consistência visual e organização, o que fortaleceu a confiança no uso da ferramenta. Além disso, a base construída com o design system abriu espaço para futuras evoluções do app, incluindo funcionalidades voltadas para gestão interna e recursos de backoffice.",
+    "bullets": [
+      "Adaptar web para mobile requer entender o contexto de uso móvel, sem comprometer a experiência.",
+      "Criar com foco em evoluções futuras, não em soluções limitadas, para garantir escalabilidade.",
+      "Feedback constante deve guiar ajustes reais no produto, não ser um processo isolado de validação final.",
+      "Prototipagem contínua deve ser usada para manter todas as partes alinhadas e ajustar a solução rapidamente.",
+      "Exploração de notificações e integrações com sistemas internos da empresa para aumentar o engajamento."
+    ]
+  },
+  "images": {
+    "flow_alt": "Fluxo Ecori"
+  }
+}

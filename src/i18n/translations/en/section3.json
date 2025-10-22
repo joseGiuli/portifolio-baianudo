@@ -1,0 +1,35 @@
+{
+  "heading": "Academic background",
+  "download_cv": "View full resume",
+  "education": [
+    {
+      "titulo": "Bachelor's in Business Administration",
+      "periodo": { "inicio": "Feb 2019", "fim": "Dec 2023" },
+      "instituicao": "Universidade Paulista",
+      "descricao": "Focus on management, strategy, and business analysis, developing skills in communication, decision-making, and problem-solving."
+    },
+    {
+      "titulo": "Product Designer Certification",
+      "periodo": { "inicio": "Jan 2025", "fim": "Jul 2025" },
+      "instituicao": "PM3",
+      "descricao": "Training focused on digital product design, exploring discovery, definition, ideation, prototyping, and validation processes, with a user-centered approach aligned with business goals."
+    },
+    {
+      "titulo": "Postgraduate Lato Sensu in UX Design",
+      "periodo": { "inicio": "Jan 2025", "fim": "Nov 2025" },
+      "instituicao": "Senac",
+      "descricao": "Specialization focused on developing projects for physical, digital, and hybrid environments, applying principles of user-centered design, information architecture, usability, and prototyping."
+    }
+  ],
+  "skills": {
+    "title": "Skills",
+    "items": [
+      { "label": "UX Design", "value": 88 },
+      { "label": "UI Design", "value": 88 },
+      { "label": "UX Research", "value": 60 },
+      { "label": "Figma", "value": 94 },
+      { "label": "Design System", "value": 75 },
+      { "label": "Prototyping and Usability Testing", "value": 80 }
+    ]
+  }
+}

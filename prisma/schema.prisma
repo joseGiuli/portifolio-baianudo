@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// Modelo para usuários admin
+model User {
+    id        String   @id @default(cuid())
+    email     String   @unique
+    name      String?
+    password  String? // Hash bcrypt da senha (opcional para retrocompatibilidade)
+    role      String   @default("admin")
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("users")
+}
+
+// Modelo para assets (imagens)
+model Asset {
+    id        String   @id @default(cuid())
+    url       String
+    width     Int?
+    height    Int?
+    mime      String
+    hash      String   @unique
+    alt       String?
+    createdAt DateTime @default(now())
+
+    // Relacionamentos
+    projectsAsCover Project[]      @relation("ProjectCover")
+    blocks          ProjectBlock[]
+
+    @@map("assets")
+}
+
+// Modelo principal para projetos dinâmicos
+model Project {
+    id   String @id @default(cuid())
+    slug String @unique
+
+    // Campos bilíngues - Português
+    titlePt         String
+    subtitlePt      String?
+    heroMetaPt      String? // JSON array de { label, value } para metadados do ProjectHero em PT
+    heroBackLabelPt String? @default("Voltar para projetos")
+
+    // Campos bilíngues - Inglês
+    titleEn         String
+    subtitleEn      String?
+    heroMetaEn      String? // JSON array de { label, value } para metadados do ProjectHero em EN
+    heroBackLabelEn String? @default("Back to projects")
+
+    // Campos para preview na seção de projetos
+    previewImage   String? // URL ou path da imagem de preview
+    previewTitlePt String? // Título que aparece abaixo da imagem em português
+    previewTitleEn String? // Título que aparece abaixo da imagem em inglês
+
+    status         String   @default("draft") // 'draft' | 'published'
+    seoTitle       String?
+    seoDescription String?
+    coverImageId   String?
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+
+    // Relacionamentos
+    coverImage Asset?         @relation("ProjectCover", fields: [coverImageId], references: [id])
+    blocks     ProjectBlock[]
+
+    @@map("projects")
+}
+
+// Modelo para blocos de conteúdo
+model ProjectBlock {
+    id         String   @id @default(cuid())
+    projectId  String
+    type       String // 'HEADING' | 'PARAGRAPH' | 'IMAGE'
+    orderIndex Int
+    json       String // JSON stringified com dados específicos do bloco
+    assetId    String? // Para blocos de imagem
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+
+    // Relacionamentos
+    project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+    asset   Asset?  @relation(fields: [assetId], references: [id])
+
+    @@index([projectId, orderIndex])
+    @@map("project_blocks")
+}
