@@ -4,6 +4,6 @@
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "functions": {
-    "src/app/api/**/*.js": { "runtime": "nodejs18.x" }
+    "src/app/api/**/*.js": { "runtime": "vercel-node@20.0.0" }
   }
 }
