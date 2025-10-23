@@ -140,10 +140,18 @@ export default function DynamicProjectClient({ slug }) {
                 case 'IMAGE':
                   if (!block.asset?.url) return null;
 
+                  // Gerar classes de visibilidade
+                  const visibilityClasses = `${
+                    block.hideOnMobile ? 'lg:hidden' : ''
+                  } ${block.hideOnDesktop ? '-lg:hidden' : ''}`.trim();
+
                   // Se zoom estiver habilitado, usar HoverZoomLens
                   if (block.enableZoom) {
                     return (
-                      <figure key={block.id || index}>
+                      <figure
+                        key={block.id || index}
+                        className={visibilityClasses}
+                      >
                         <HoverZoomLens
                           src={block.asset.url}
                           largeSrc={block.asset.url}
@@ -197,7 +205,10 @@ export default function DynamicProjectClient({ slug }) {
                   }
 
                   return (
-                    <figure key={block.id || index}>
+                    <figure
+                      key={block.id || index}
+                      className={visibilityClasses}
+                    >
                       <img
                         src={block.asset.url}
                         alt={block.alt}

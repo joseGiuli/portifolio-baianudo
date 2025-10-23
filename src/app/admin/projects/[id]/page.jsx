@@ -622,6 +622,43 @@ function BlockEditor({ block, onChange }) {
             )}
           </div>
 
+          {/* Opções de Visibilidade */}
+          <div className="border-t border-gray-200 pt-4 mt-4">
+            <p className="text-sm font-medium text-gray-700 mb-3">
+              Visibilidade
+            </p>
+            <div className="space-y-2">
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={block.hideOnMobile || false}
+                  onChange={e => handleChange('hideOnMobile', e.target.checked)}
+                  className="mr-2 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <span className="text-sm text-gray-700">Ocultar no mobile</span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={block.hideOnDesktop || false}
+                  onChange={e =>
+                    handleChange('hideOnDesktop', e.target.checked)
+                  }
+                  className="mr-2 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                />
+                <span className="text-sm text-gray-700">
+                  Ocultar no desktop
+                </span>
+              </label>
+            </div>
+            {block.hideOnMobile && block.hideOnDesktop && (
+              <p className="text-xs text-amber-600 mt-2 flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                Atenção: Imagem oculta em todos os dispositivos
+              </p>
+            )}
+          </div>
+
           {/* Opção de Hover Zoom (apenas desktop) */}
           <div className="border-t border-gray-200 pt-4 mt-4">
             <label className="flex items-center cursor-pointer">
@@ -646,7 +683,7 @@ function BlockEditor({ block, onChange }) {
                   Configurações do Zoom:
                 </p>
 
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-medium text-gray-600 mb-1">
                       Nível de Zoom
@@ -682,24 +719,6 @@ function BlockEditor({ block, onChange }) {
                       className="w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
                     <p className="text-xs text-gray-400 mt-0.5">80 - 200px</p>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-gray-600 mb-1">
-                      Borda da Lente
-                    </label>
-                    <input
-                      type="number"
-                      value={block.lensBorder || 1}
-                      onChange={e =>
-                        handleChange('lensBorder', parseInt(e.target.value))
-                      }
-                      placeholder="1"
-                      min="0"
-                      max="5"
-                      className="w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    />
-                    <p className="text-xs text-gray-400 mt-0.5">0 - 5px</p>
                   </div>
                 </div>
               </div>
@@ -978,10 +997,11 @@ export default function EditProjectPage({ params }) {
         customWidth: '',
         customHeight: '',
         objectFit: 'cover',
+        hideOnMobile: false,
+        hideOnDesktop: false,
         enableZoom: false,
         zoomLevel: 2.2,
         lensSize: 120,
-        lensBorder: 1,
       }),
       ...(type === 'BUTTON' && { textPt: '', textEn: '', href: '' }),
       ...(type === 'LIST' && { itemsPt: [], itemsEn: [] }),
@@ -1777,6 +1797,11 @@ export default function EditProjectPage({ params }) {
                         const imageUrl = block.asset?.url;
 
                         if (imageUrl) {
+                          // Gerar classes de visibilidade
+                          const visibilityClasses = `${
+                            block.hideOnMobile ? 'lg:hidden' : ''
+                          } ${block.hideOnDesktop ? '-lg:hidden' : ''}`.trim();
+
                           // Usar tamanho customizado ou tamanho padrão
                           let imageClass = 'mx-auto';
                           let imageStyle = { maxWidth: '100%' };
@@ -1809,7 +1834,10 @@ export default function EditProjectPage({ params }) {
                           }
 
                           return (
-                            <figure key={blockKey}>
+                            <figure
+                              key={blockKey}
+                              className={visibilityClasses}
+                            >
                               <img
                                 src={imageUrl}
                                 alt={block.alt || 'Imagem do projeto'}

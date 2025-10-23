@@ -40,10 +40,15 @@ function BlockRenderer({ block }) {
         );
       }
 
+      // Gerar classes de visibilidade
+      const visibilityClasses = `${
+        block.hideOnMobile ? 'lg:hidden' : ''
+      } ${block.hideOnDesktop ? '-lg:hidden' : ''}`.trim();
+
       // Se zoom estiver habilitado, usar HoverZoomLens
       if (block.enableZoom) {
         return (
-          <figure>
+          <figure className={visibilityClasses}>
             <HoverZoomLens
               src={block.asset.url}
               largeSrc={block.asset.url}
@@ -72,7 +77,7 @@ function BlockRenderer({ block }) {
       });
 
       return (
-        <figure>
+        <figure className={visibilityClasses}>
           <Image
             src={block.asset.url}
             alt={block.alt}
