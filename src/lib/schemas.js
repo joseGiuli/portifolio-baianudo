@@ -43,6 +43,10 @@ export const ImageBlockSchema = z.object({
   customHeight: z.union([z.string(), z.number()]).optional(),
   objectFit: z.enum(['cover', 'contain', 'fill']).optional(),
   width: z.number().positive().optional(),
+  enableZoom: z.boolean().optional(),
+  zoomLevel: z.number().min(1.5).max(5).optional(),
+  lensSize: z.number().min(80).max(200).optional(),
+  lensBorder: z.number().min(0).max(5).optional(),
 });
 
 // Schema para bloco de botão

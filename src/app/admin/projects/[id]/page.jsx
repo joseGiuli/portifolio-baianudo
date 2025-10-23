@@ -136,28 +136,44 @@ function BlockEditor({ block, onChange }) {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🇧🇷 Texto do título (Português)
+              🇧🇷 Texto do título (Português){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <input
               type="text"
               value={block.textPt || ''}
               onChange={e => handleChange('textPt', e.target.value)}
               placeholder="Digite o título em português..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.textPt?.trim() && !block.textEn?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🇺🇸 Texto do título (English)
+              🇺🇸 Texto do título (English){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <input
               type="text"
               value={block.textEn || ''}
               onChange={e => handleChange('textEn', e.target.value)}
               placeholder="Enter the title in English..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.textPt?.trim() && !block.textEn?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
           </div>
+          {!block.textPt?.trim() && !block.textEn?.trim() && (
+            <p className="text-xs text-red-600 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" />
+              Preencha o título em pelo menos um idioma
+            </p>
+          )}
         </div>
       );
 
@@ -166,28 +182,44 @@ function BlockEditor({ block, onChange }) {
         <div className="space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🇧🇷 Conteúdo do parágrafo (Português)
+              🇧🇷 Conteúdo do parágrafo (Português){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <textarea
               value={block.htmlPt || ''}
               onChange={e => handleChange('htmlPt', e.target.value)}
               placeholder="Digite o conteúdo em português..."
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.htmlPt?.trim() && !block.htmlEn?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🇺🇸 Conteúdo do parágrafo (English)
+              🇺🇸 Conteúdo do parágrafo (English){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <textarea
               value={block.htmlEn || ''}
               onChange={e => handleChange('htmlEn', e.target.value)}
               placeholder="Enter the content in English..."
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.htmlPt?.trim() && !block.htmlEn?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
           </div>
+          {!block.htmlPt?.trim() && !block.htmlEn?.trim() && (
+            <p className="text-xs text-red-600 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" />
+              Preencha o conteúdo em pelo menos um idioma
+            </p>
+          )}
         </div>
       );
 
@@ -200,13 +232,20 @@ function BlockEditor({ block, onChange }) {
       );
 
     case 'LIST':
+      const hasValidItemsPt =
+        block.itemsPt && block.itemsPt.some(item => item?.trim());
+      const hasValidItemsEn =
+        block.itemsEn && block.itemsEn.some(item => item?.trim());
+      const hasAnyValidItem = hasValidItemsPt || hasValidItemsEn;
+
       return (
         <div className="space-y-3">
           {/* Items em Português */}
           <div>
             <div className="flex justify-between items-center mb-2">
               <label className="block text-sm font-medium text-gray-700">
-                🇧🇷 Itens da lista (Português)
+                🇧🇷 Itens da lista (Português){' '}
+                <span className="text-red-600 font-bold">*</span>
               </label>
               <button
                 type="button"
@@ -260,7 +299,8 @@ function BlockEditor({ block, onChange }) {
           <div>
             <div className="flex justify-between items-center mb-2">
               <label className="block text-sm font-medium text-gray-700">
-                🇺🇸 Itens da lista (English)
+                🇺🇸 Itens da lista (English){' '}
+                <span className="text-red-600 font-bold">*</span>
               </label>
               <button
                 type="button"
@@ -309,6 +349,14 @@ function BlockEditor({ block, onChange }) {
               )}
             </div>
           </div>
+
+          {/* Validação geral da lista */}
+          {!hasAnyValidItem && (
+            <p className="text-xs text-red-600 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" />
+              Adicione pelo menos um item com conteúdo em qualquer idioma
+            </p>
+          )}
         </div>
       );
 
@@ -332,31 +380,47 @@ function BlockEditor({ block, onChange }) {
         <div className="space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🇧🇷 Texto do botão (Português)
+              🇧🇷 Texto do botão (Português){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <input
               type="text"
               value={block.textPt || ''}
               onChange={e => handleChange('textPt', e.target.value)}
               placeholder="Digite o texto do botão em português..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.textPt?.trim() && !block.textEn?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🇺🇸 Texto do botão (English)
+              🇺🇸 Texto do botão (English){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <input
               type="text"
               value={block.textEn || ''}
               onChange={e => handleChange('textEn', e.target.value)}
               placeholder="Enter the button text in English..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.textPt?.trim() && !block.textEn?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
           </div>
+          {!block.textPt?.trim() && !block.textEn?.trim() && (
+            <p className="text-xs text-red-600 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" />
+              Preencha o texto do botão em pelo menos um idioma
+            </p>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🔗 Link (URL) *
+              🔗 Link (URL) <span className="text-red-600 font-bold">*</span>
             </label>
             <input
               type="url"
@@ -423,15 +487,26 @@ function BlockEditor({ block, onChange }) {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Texto alternativo (alt) *
+              Texto alternativo (alt){' '}
+              <span className="text-red-600 font-bold">*</span>
             </label>
             <input
               type="text"
               value={block.alt || ''}
               onChange={e => handleChange('alt', e.target.value)}
               placeholder="Descreva a imagem para acessibilidade..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                !block.alt?.trim()
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
+            {!block.alt?.trim() && (
+              <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                Campo obrigatório para acessibilidade
+              </p>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -544,6 +619,90 @@ function BlockEditor({ block, onChange }) {
                 <option value="large">Grande (1000px)</option>
                 <option value="full">Largura Total</option>
               </select>
+            )}
+          </div>
+
+          {/* Opção de Hover Zoom (apenas desktop) */}
+          <div className="border-t border-gray-200 pt-4 mt-4">
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                checked={block.enableZoom || false}
+                onChange={e => handleChange('enableZoom', e.target.checked)}
+                className="mr-2 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <span className="text-sm font-medium text-gray-700">
+                🔍 Habilitar Zoom ao passar o mouse (apenas desktop)
+              </span>
+            </label>
+            <p className="text-xs text-gray-500 mt-1 ml-6">
+              Ativa efeito de lupa ao passar o mouse sobre a imagem. Não
+              funciona no mobile.
+            </p>
+
+            {block.enableZoom && (
+              <div className="mt-4 space-y-3 ml-6 p-3 bg-gray-50 rounded-md border border-gray-200">
+                <p className="text-xs font-medium text-gray-700 mb-2">
+                  Configurações do Zoom:
+                </p>
+
+                <div className="grid grid-cols-3 gap-3">
+                  <div>
+                    <label className="block text-xs font-medium text-gray-600 mb-1">
+                      Nível de Zoom
+                    </label>
+                    <input
+                      type="number"
+                      value={block.zoomLevel || 2.2}
+                      onChange={e =>
+                        handleChange('zoomLevel', parseFloat(e.target.value))
+                      }
+                      placeholder="2.2"
+                      min="1.5"
+                      max="5"
+                      step="0.1"
+                      className="w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <p className="text-xs text-gray-400 mt-0.5">1.5 - 5.0</p>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-gray-600 mb-1">
+                      Tamanho da Lente
+                    </label>
+                    <input
+                      type="number"
+                      value={block.lensSize || 120}
+                      onChange={e =>
+                        handleChange('lensSize', parseInt(e.target.value))
+                      }
+                      placeholder="120"
+                      min="80"
+                      max="200"
+                      className="w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <p className="text-xs text-gray-400 mt-0.5">80 - 200px</p>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-gray-600 mb-1">
+                      Borda da Lente
+                    </label>
+                    <input
+                      type="number"
+                      value={block.lensBorder || 1}
+                      onChange={e =>
+                        handleChange('lensBorder', parseInt(e.target.value))
+                      }
+                      placeholder="1"
+                      min="0"
+                      max="5"
+                      className="w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
+                    <p className="text-xs text-gray-400 mt-0.5">0 - 5px</p>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
@@ -819,6 +978,10 @@ export default function EditProjectPage({ params }) {
         customWidth: '',
         customHeight: '',
         objectFit: 'cover',
+        enableZoom: false,
+        zoomLevel: 2.2,
+        lensSize: 120,
+        lensBorder: 1,
       }),
       ...(type === 'BUTTON' && { textPt: '', textEn: '', href: '' }),
       ...(type === 'LIST' && { itemsPt: [], itemsEn: [] }),

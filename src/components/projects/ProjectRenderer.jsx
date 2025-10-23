@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import MotionFillButton from '@/components/layout/Button';
+import HoverZoomLens from '@/components/ui/HoverZoomLens';
 import {
   renderHeading,
   renderParagraph,
@@ -31,11 +32,6 @@ function BlockRenderer({ block }) {
     }
 
     case 'IMAGE': {
-      const { props } = renderImage(block.asset?.url || '', block.alt, {
-        width: block.width || block.asset?.width,
-        height: block.asset?.height,
-      });
-
       if (!block.asset?.url) {
         return (
           <div className="bg-gray-200 rounded-lg p-8 text-center text-gray-500">
@@ -43,6 +39,37 @@ function BlockRenderer({ block }) {
           </div>
         );
       }
+
+      // Se zoom estiver habilitado, usar HoverZoomLens
+      if (block.enableZoom) {
+        return (
+          <figure>
+            <HoverZoomLens
+              src={block.asset.url}
+              largeSrc={block.asset.url}
+              alt={block.alt}
+              width={block.asset.width || 2560}
+              height={block.asset.height || 906}
+              zoom={block.zoomLevel || 2.2}
+              lensSize={block.lensSize || 120}
+              lensBorder={block.lensBorder || 1}
+              className="mx-auto w-[min(100%,1000px)]"
+              lensClassName="border border-vermelho"
+            />
+            {block.caption && (
+              <figcaption className="text-center text-sm text-neutral/70 mt-2">
+                {block.caption}
+              </figcaption>
+            )}
+          </figure>
+        );
+      }
+
+      // Renderização normal sem zoom
+      const { props } = renderImage(block.asset?.url || '', block.alt, {
+        width: block.width || block.asset?.width,
+        height: block.asset?.height,
+      });
 
       return (
         <figure>
