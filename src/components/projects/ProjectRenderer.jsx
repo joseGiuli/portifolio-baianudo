@@ -83,6 +83,24 @@ function BlockRenderer({ block }) {
       );
     }
 
+    case 'LIST': {
+      // Filtrar itens vazios
+      const items = block.items || [];
+      const validItems = items.filter(item => item?.trim());
+
+      if (validItems.length === 0) {
+        return null;
+      }
+
+      return (
+        <ul className="list-disc marker:text-neutral text-neutral pl-6 space-y-6 text-[22px] lg:text-lg leading-10">
+          {validItems.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      );
+    }
+
     case 'DIVIDER': {
       return (
         <div className="my-12 relative">

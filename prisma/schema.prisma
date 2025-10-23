@@ -81,7 +81,7 @@ model Project {
 model ProjectBlock {
     id         String   @id @default(cuid())
     projectId  String
-    type       String // 'HEADING' | 'PARAGRAPH' | 'IMAGE'
+    type       String // 'HEADING' | 'PARAGRAPH' | 'IMAGE' | 'BUTTON' | 'LIST' | 'DIVIDER'
     orderIndex Int
     json       String // JSON stringified com dados específicos do bloco
     assetId    String? // Para blocos de imagem

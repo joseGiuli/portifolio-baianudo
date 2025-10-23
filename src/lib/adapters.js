@@ -76,6 +76,15 @@ const adapters = {
     };
   },
 
+  list: items => {
+    return {
+      tag: 'ul',
+      classes:
+        'list-disc marker:text-neutral text-neutral pl-6 space-y-6 text-[22px] lg:text-lg leading-10',
+      items,
+    };
+  },
+
   contentWrapper: children => {
     return {
       tag: 'div',

@@ -52,11 +52,42 @@ export const ButtonBlockSchema = z
     textPt: z.string().optional(),
     textEn: z.string().optional(),
     text: z.string().optional(), // Manter retrocompatibilidade
-    href: z.string().url('URL inválida').min(1, 'Link é obrigatório'),
+    href: z.string().min(1, 'Link é obrigatório'),
   })
   .refine(
     data => data.textPt || data.textEn || data.text,
     'Texto do botão em pelo menos um idioma é obrigatório',
+  )
+  .refine(
+    data => {
+      try {
+        const url = new URL(data.href);
+        return url.protocol === 'http:' || url.protocol === 'https:';
+      } catch {
+        return false;
+      }
+    },
+    {
+      message:
+        'Link inválido. Deve ser uma URL completa começando com http:// ou https://',
+      path: ['href'],
+    },
+  );
+
+// Schema para bloco de lista
+export const ListBlockSchema = z
+  .object({
+    type: z.literal('LIST'),
+    itemsPt: z.array(z.string()).optional(),
+    itemsEn: z.array(z.string()).optional(),
+    items: z.array(z.string()).optional(), // Manter retrocompatibilidade
+  })
+  .refine(
+    data =>
+      (data.itemsPt && data.itemsPt.some(item => item?.trim())) ||
+      (data.itemsEn && data.itemsEn.some(item => item?.trim())) ||
+      (data.items && data.items.some(item => item?.trim())),
+    'Lista precisa ter pelo menos um item com conteúdo em pelo menos um idioma',
   );
 
 // Schema para bloco de divisor
@@ -70,6 +101,7 @@ export const ProjectBlockSchema = z.discriminatedUnion('type', [
   ParagraphBlockSchema,
   ImageBlockSchema,
   ButtonBlockSchema,
+  ListBlockSchema,
   DividerBlockSchema,
 ]);
 

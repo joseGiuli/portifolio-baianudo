@@ -66,9 +66,7 @@ export default function AdminProjectsPage() {
 
   // Deletar projeto
   const handleDelete = async (projectId, projectTitle) => {
-    if (
-      !confirm(`Tem certeza que deseja deletar o projeto "${projectTitle}"?`)
-    ) {
+    if (!confirm(`Tem certeza que deseja deletar o projeto ?`)) {
       return;
     }
 

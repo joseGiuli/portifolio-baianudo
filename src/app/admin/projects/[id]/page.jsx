@@ -22,6 +22,7 @@ import {
   Link as LinkIcon,
   Send,
   AlertCircle,
+  List,
 } from 'lucide-react';
 import Link from 'next/link';
 import ImageUpload from '@/components/admin/ImageUpload';
@@ -80,11 +81,15 @@ function SortableBlock({ block, index, onUpdate, onDelete }) {
             {block.type === 'BUTTON' && (
               <LinkIcon className="h-4 w-4 text-orange-500" />
             )}
+            {block.type === 'LIST' && (
+              <List className="h-4 w-4 text-cyan-500" />
+            )}
             <span className="text-sm font-medium text-gray-700">
               {block.type === 'HEADING' && 'Título'}
               {block.type === 'PARAGRAPH' && 'Texto'}
               {block.type === 'IMAGE' && 'Imagem'}
               {block.type === 'BUTTON' && 'Botão'}
+              {block.type === 'LIST' && 'Lista'}
             </span>
           </div>
         </div>
@@ -194,7 +199,135 @@ function BlockEditor({ block, onChange }) {
         </div>
       );
 
+    case 'LIST':
+      return (
+        <div className="space-y-3">
+          {/* Items em Português */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-medium text-gray-700">
+                🇧🇷 Itens da lista (Português)
+              </label>
+              <button
+                type="button"
+                onClick={() => {
+                  const newItems = [...(block.itemsPt || []), ''];
+                  handleChange('itemsPt', newItems);
+                }}
+                className="inline-flex items-center px-2 py-1 border border-gray-300 shadow-sm text-xs leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                <Plus className="h-3 w-3 mr-1" />
+                Adicionar item
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(block.itemsPt || []).map((item, index) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    value={item}
+                    onChange={e => {
+                      const newItems = [...(block.itemsPt || [])];
+                      newItems[index] = e.target.value;
+                      handleChange('itemsPt', newItems);
+                    }}
+                    placeholder={`Item ${index + 1}...`}
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newItems = (block.itemsPt || []).filter(
+                        (_, i) => i !== index,
+                      );
+                      handleChange('itemsPt', newItems);
+                    }}
+                    className="p-2 text-red-600 hover:text-red-900 border border-gray-300 rounded-md"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
+              ))}
+              {(!block.itemsPt || block.itemsPt.length === 0) && (
+                <p className="text-sm text-gray-500 italic">
+                  Nenhum item adicionado ainda
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Items em Inglês */}
+          <div>
+            <div className="flex justify-between items-center mb-2">
+              <label className="block text-sm font-medium text-gray-700">
+                🇺🇸 Itens da lista (English)
+              </label>
+              <button
+                type="button"
+                onClick={() => {
+                  const newItems = [...(block.itemsEn || []), ''];
+                  handleChange('itemsEn', newItems);
+                }}
+                className="inline-flex items-center px-2 py-1 border border-gray-300 shadow-sm text-xs leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+              >
+                <Plus className="h-3 w-3 mr-1" />
+                Add item
+              </button>
+            </div>
+            <div className="space-y-2">
+              {(block.itemsEn || []).map((item, index) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    value={item}
+                    onChange={e => {
+                      const newItems = [...(block.itemsEn || [])];
+                      newItems[index] = e.target.value;
+                      handleChange('itemsEn', newItems);
+                    }}
+                    placeholder={`Item ${index + 1}...`}
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const newItems = (block.itemsEn || []).filter(
+                        (_, i) => i !== index,
+                      );
+                      handleChange('itemsEn', newItems);
+                    }}
+                    className="p-2 text-red-600 hover:text-red-900 border border-gray-300 rounded-md"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
+              ))}
+              {(!block.itemsEn || block.itemsEn.length === 0) && (
+                <p className="text-sm text-gray-500 italic">
+                  No items added yet
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+
     case 'BUTTON':
+      // Validação de URL
+      const isValidUrl = href => {
+        if (!href || href.trim() === '') return true; // Vazio é válido (ainda não preenchido)
+        try {
+          const url = new URL(href);
+          return url.protocol === 'http:' || url.protocol === 'https:';
+        } catch {
+          return false;
+        }
+      };
+
+      const hrefValue = block.href || '';
+      const isUrlValid = isValidUrl(hrefValue);
+      const showUrlError = hrefValue.trim() !== '' && !isUrlValid;
+
       return (
         <div className="space-y-3">
           <div>
@@ -223,18 +356,41 @@ function BlockEditor({ block, onChange }) {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              🔗 Link (URL)
+              🔗 Link (URL) *
             </label>
             <input
               type="url"
-              value={block.href || ''}
+              value={hrefValue}
               onChange={e => handleChange('href', e.target.value)}
+              onBlur={e => {
+                const value = e.target.value.trim();
+                // Auto-completar com https:// se não tiver protocolo
+                if (
+                  value &&
+                  !value.startsWith('http://') &&
+                  !value.startsWith('https://')
+                ) {
+                  handleChange('href', `https://${value}`);
+                }
+              }}
               placeholder="https://exemplo.com"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
+                showUrlError
+                  ? 'border-red-300 focus:ring-red-500 focus:border-red-500'
+                  : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
+              }`}
             />
-            <p className="text-xs text-gray-500 mt-1">
-              O botão abrirá este link em uma nova aba
-            </p>
+            {showUrlError ? (
+              <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <AlertCircle className="h-3 w-3" />
+                URL inválida. Deve começar com http:// ou https://
+              </p>
+            ) : (
+              <p className="text-xs text-gray-500 mt-1">
+                O botão abrirá este link em uma nova aba. Se não começar com
+                https://, será adicionado automaticamente.
+              </p>
+            )}
           </div>
         </div>
       );
@@ -512,6 +668,17 @@ export default function EditProjectPage({ params }) {
     setHeroMetaItemsEn(newItems);
   };
 
+  // Função helper para validar URL
+  const isValidUrl = href => {
+    if (!href || href.trim() === '') return false;
+    try {
+      const url = new URL(href);
+      return url.protocol === 'http:' || url.protocol === 'https:';
+    } catch {
+      return false;
+    }
+  };
+
   // Auto-save com debounce
   const saveProject = useCallback(
     async data => {
@@ -526,24 +693,44 @@ export default function EditProjectPage({ params }) {
         );
 
         // Filtrar blocos vazios ou inválidos
-        const validBlocks = blocks.filter(block => {
-          switch (block.type) {
-            case 'HEADING':
-              return block.textPt?.trim() || block.textEn?.trim(); // Título precisa ter texto em pelo menos um idioma
-            case 'PARAGRAPH':
-              return block.htmlPt?.trim() || block.htmlEn?.trim(); // Parágrafo precisa ter conteúdo em pelo menos um idioma
-            case 'IMAGE':
-              return block.assetId && block.alt?.trim(); // Imagem precisa ter asset e alt
-            case 'BUTTON':
-              return (
-                (block.textPt?.trim() || block.textEn?.trim()) &&
-                block.href?.trim()
-              ); // Botão precisa ter texto e link
-            case 'DIVIDER':
-              return true; // Divisor é sempre válido (texto é opcional)
-            default:
-              return false;
+        const invalidButtons = [];
+        const validBlocks = blocks.filter((block, index) => {
+          // Rastrear botões inválidos para feedback
+          if (block.type === 'BUTTON') {
+            const hasText = block.textPt?.trim() || block.textEn?.trim();
+            const hasValidUrl = isValidUrl(block.href);
+            if (hasText && !hasValidUrl) {
+              invalidButtons.push(index + 1);
+            }
           }
+
+          // Validação normal
+          const isValid = (() => {
+            switch (block.type) {
+              case 'HEADING':
+                return block.textPt?.trim() || block.textEn?.trim(); // Título precisa ter texto em pelo menos um idioma
+              case 'PARAGRAPH':
+                return block.htmlPt?.trim() || block.htmlEn?.trim(); // Parágrafo precisa ter conteúdo em pelo menos um idioma
+              case 'IMAGE':
+                return block.assetId && block.alt?.trim(); // Imagem precisa ter asset e alt
+              case 'BUTTON':
+                return (
+                  (block.textPt?.trim() || block.textEn?.trim()) &&
+                  isValidUrl(block.href)
+                ); // Botão precisa ter texto e link válido (http/https)
+              case 'LIST':
+                return (
+                  (block.itemsPt && block.itemsPt.some(item => item?.trim())) ||
+                  (block.itemsEn && block.itemsEn.some(item => item?.trim()))
+                ); // Lista precisa ter pelo menos um item com conteúdo em pelo menos um idioma
+              case 'DIVIDER':
+                return true; // Divisor é sempre válido (texto é opcional)
+              default:
+                return false;
+            }
+          })();
+
+          return isValid;
         });
 
         const response = await fetch(`/api/projects/${projectId}`, {
@@ -563,13 +750,22 @@ export default function EditProjectPage({ params }) {
         if (response.ok) {
           setLastSaved(new Date());
           setError(''); // Limpar erro se houver sucesso
-          setSuccess('Projeto salvo com sucesso!');
+
+          // Mensagem de sucesso com alerta se houver botões inválidos
+          let successMessage = 'Projeto salvo com sucesso!';
+          if (invalidButtons.length > 0) {
+            successMessage += ` ⚠️ ${invalidButtons.length} botão(ões) com link inválido foi(ram) removido(s) automaticamente.`;
+          }
+          setSuccess(successMessage);
 
           // Atualizar lista de blocos removendo os vazios
           setBlocks(validBlocks);
 
-          // Limpar mensagem de sucesso após 3 segundos
-          setTimeout(() => setSuccess(''), 3000);
+          // Limpar mensagem de sucesso após 5 segundos se houver aviso
+          setTimeout(
+            () => setSuccess(''),
+            invalidButtons.length > 0 ? 5000 : 3000,
+          );
         } else {
           const errorData = await response.json();
           console.error('Erro ao salvar:', errorData);
@@ -598,13 +794,20 @@ export default function EditProjectPage({ params }) {
         setSaving(false);
       }
     },
-    [projectId, blocks, heroMetaItemsPt, heroMetaItemsEn, previewImage],
+    [
+      projectId,
+      blocks,
+      heroMetaItemsPt,
+      heroMetaItemsEn,
+      previewImage,
+      isValidUrl,
+    ],
   );
 
   // Adicionar novo bloco
   const addBlock = type => {
     const newBlock = {
-      id: `temp-${Date.now()}`,
+      id: `temp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       type,
       ...(type === 'HEADING' && { level: 'h3', textPt: '', textEn: '' }),
       ...(type === 'PARAGRAPH' && { htmlPt: '', htmlEn: '' }),
@@ -618,6 +821,7 @@ export default function EditProjectPage({ params }) {
         objectFit: 'cover',
       }),
       ...(type === 'BUTTON' && { textPt: '', textEn: '', href: '' }),
+      ...(type === 'LIST' && { itemsPt: [], itemsEn: [] }),
       ...(type === 'DIVIDER' && {}),
     };
     setBlocks([...blocks, newBlock]);
@@ -876,17 +1080,17 @@ export default function EditProjectPage({ params }) {
                   </div>
 
                   <div>
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex items-center gap-3 mb-3">
                       <label className="block text-sm font-medium text-gray-700">
                         Metadados Hero (Português)
                       </label>
                       <button
                         type="button"
                         onClick={addHeroMetaItemPt}
-                        className="inline-flex items-center px-2 py-1 border border-gray-300 shadow-sm text-xs leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                        className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                       >
-                        <Plus className="h-3 w-3 mr-1" />
-                        Adicionar
+                        <Plus className="h-4 w-4 mr-1" />
+                        Add
                       </button>
                     </div>
 
@@ -970,16 +1174,16 @@ export default function EditProjectPage({ params }) {
                   </div>
 
                   <div>
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex items-center gap-3 mb-3">
                       <label className="block text-sm font-medium text-gray-700">
                         Hero Metadata (English)
                       </label>
                       <button
                         type="button"
                         onClick={addHeroMetaItemEn}
-                        className="inline-flex items-center px-2 py-1 border border-gray-300 shadow-sm text-xs leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                        className="inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                       >
-                        <Plus className="h-3 w-3 mr-1" />
+                        <Plus className="h-4 w-4 mr-1" />
                         Add
                       </button>
                     </div>
@@ -1158,6 +1362,14 @@ export default function EditProjectPage({ params }) {
                     Botão
                   </button>
                   <button
+                    onClick={() => addBlock('LIST')}
+                    className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    title="Adicionar Lista"
+                  >
+                    <List className="mr-2 h-4 w-4" />
+                    Lista
+                  </button>
+                  <button
                     onClick={() => addBlock('DIVIDER')}
                     className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     title="Adicionar Divisor"
@@ -1172,9 +1384,11 @@ export default function EditProjectPage({ params }) {
             <div className="px-6 py-6">
               {blocks.length === 0 ? (
                 <div className="text-center py-12 text-gray-500">
-                  <p>Nenhum bloco adicionado ainda.</p>
+                  <p className="text-lg font-medium">
+                    Nenhum bloco adicionado ainda.
+                  </p>
                   <p className="text-sm mt-1">
-                    Use os botões acima para adicionar conteúdo.
+                    Use os botões abaixo para começar a adicionar conteúdo.
                   </p>
                 </div>
               ) : (
@@ -1201,6 +1415,68 @@ export default function EditProjectPage({ params }) {
                   </SortableContext>
                 </DndContext>
               )}
+
+              {/* Barra de adição de blocos sempre visível embaixo */}
+              <div className="mt-8 border-t-2 border-dashed border-gray-300 pt-6">
+                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4 border border-indigo-200">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Plus className="h-5 w-5 text-indigo-600" />
+                    <h3 className="text-sm font-semibold text-gray-700">
+                      Adicionar novo bloco
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => addBlock('HEADING')}
+                      className="inline-flex items-center px-3 py-2 border border-indigo-300 shadow-sm text-sm leading-4 font-medium rounded-md text-indigo-700 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                      title="Adicionar Título"
+                    >
+                      <Type className="mr-2 h-4 w-4" />
+                      Título
+                    </button>
+                    <button
+                      onClick={() => addBlock('PARAGRAPH')}
+                      className="inline-flex items-center px-3 py-2 border border-green-300 shadow-sm text-sm leading-4 font-medium rounded-md text-green-700 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+                      title="Adicionar Texto"
+                    >
+                      <FileText className="mr-2 h-4 w-4" />
+                      Texto
+                    </button>
+                    <button
+                      onClick={() => addBlock('IMAGE')}
+                      className="inline-flex items-center px-3 py-2 border border-purple-300 shadow-sm text-sm leading-4 font-medium rounded-md text-purple-700 bg-white hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors"
+                      title="Adicionar Imagem"
+                    >
+                      <ImageIcon className="mr-2 h-4 w-4" />
+                      Imagem
+                    </button>
+                    <button
+                      onClick={() => addBlock('BUTTON')}
+                      className="inline-flex items-center px-3 py-2 border border-orange-300 shadow-sm text-sm leading-4 font-medium rounded-md text-orange-700 bg-white hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition-colors"
+                      title="Adicionar Botão"
+                    >
+                      <LinkIcon className="mr-2 h-4 w-4" />
+                      Botão
+                    </button>
+                    <button
+                      onClick={() => addBlock('LIST')}
+                      className="inline-flex items-center px-3 py-2 border border-cyan-300 shadow-sm text-sm leading-4 font-medium rounded-md text-cyan-700 bg-white hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-colors"
+                      title="Adicionar Lista"
+                    >
+                      <List className="mr-2 h-4 w-4" />
+                      Lista
+                    </button>
+                    <button
+                      onClick={() => addBlock('DIVIDER')}
+                      className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors"
+                      title="Adicionar Divisor"
+                    >
+                      <Minus className="mr-2 h-4 w-4" />
+                      Divisor
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Botões na parte inferior */}
@@ -1310,11 +1586,12 @@ export default function EditProjectPage({ params }) {
               {/* Conteúdo */}
               <div className="[&_p]:text-[22px] lg:[&_p]:text-lg [&_p]:leading-10 [&_p]:text-neutral space-y-8">
                 {blocks.map((block, index) => {
+                  const blockKey = block.id || `block-${index}`;
                   switch (block.type) {
                     case 'HEADING':
                       return (
                         <h3
-                          key={index}
+                          key={blockKey}
                           className="text-4xl lg:text-3xl text-neutral text-center my-12"
                         >
                           {block.textPt || block.textEn || 'Título...'}
@@ -1324,7 +1601,7 @@ export default function EditProjectPage({ params }) {
                     case 'PARAGRAPH':
                       return (
                         <p
-                          key={index}
+                          key={blockKey}
                           dangerouslySetInnerHTML={{
                             __html:
                               block.htmlPt || block.htmlEn || 'Parágrafo...',
@@ -1369,7 +1646,7 @@ export default function EditProjectPage({ params }) {
                           }
 
                           return (
-                            <figure key={index}>
+                            <figure key={blockKey}>
                               <img
                                 src={imageUrl}
                                 alt={block.alt || 'Imagem do projeto'}
@@ -1389,7 +1666,7 @@ export default function EditProjectPage({ params }) {
                       // Placeholder quando não há imagem
                       return (
                         <div
-                          key={index}
+                          key={blockKey}
                           className="text-center py-8 bg-gray-800 rounded-lg border border-gray-700"
                         >
                           <ImageIcon className="h-12 w-12 mx-auto text-gray-500 mb-2" />
@@ -1407,7 +1684,10 @@ export default function EditProjectPage({ params }) {
                     case 'BUTTON':
                       if (block.textPt || block.textEn) {
                         return (
-                          <div key={index} className="flex justify-center my-8">
+                          <div
+                            key={blockKey}
+                            className="flex justify-center my-8"
+                          >
                             <button
                               className="relative isolate overflow-hidden rounded-xl border border-white bg-transparent px-8 py-4 lg:px-4 lg:py-3 text-white shadow-md"
                               disabled
@@ -1423,7 +1703,7 @@ export default function EditProjectPage({ params }) {
                       }
                       return (
                         <div
-                          key={index}
+                          key={blockKey}
                           className="text-center py-8 bg-gray-800 rounded-lg border border-gray-700"
                         >
                           <LinkIcon className="h-12 w-12 mx-auto text-gray-500 mb-2" />
@@ -1433,9 +1713,38 @@ export default function EditProjectPage({ params }) {
                         </div>
                       );
 
+                    case 'LIST':
+                      const items = block.itemsPt || block.itemsEn || [];
+                      const validItems = items.filter(item => item?.trim());
+
+                      if (validItems.length === 0) {
+                        return (
+                          <div
+                            key={blockKey}
+                            className="text-center py-8 bg-gray-800 rounded-lg border border-gray-700"
+                          >
+                            <List className="h-12 w-12 mx-auto text-gray-500 mb-2" />
+                            <p className="text-gray-400">
+                              Adicione itens à lista
+                            </p>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <ul
+                          key={blockKey}
+                          className="list-disc marker:text-neutral text-neutral pl-6 space-y-6 text-[22px] lg:text-lg leading-10"
+                        >
+                          {validItems.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      );
+
                     case 'DIVIDER':
                       return (
-                        <div key={index} className="my-12 relative">
+                        <div key={blockKey} className="my-12 relative">
                           <div className="flex items-center">
                             <div className="flex-grow border-t border-vermelho"></div>
                             <div className="w-2 h-2 bg-vermelho rounded-full mx-4"></div>

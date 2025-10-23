@@ -115,17 +115,17 @@ function Section4({ callForm }) {
             {t('description')}
           </motion.p>
 
-          <motion.ul className="grid grid-cols-3 gap-6 lg:grid-cols-1 lg:gap-8">
+          <motion.ul className="grid grid-cols-3 gap-6 lg:grid-cols-1 lg:gap-8 ">
             {allProjects.map((project, index) => (
               <motion.li
                 key={project.id || project.name || index}
-                className="text-white text-lg"
+                className="text-white text-lg lg:flex lg:flex-col lg:items-center lg:justify-center"
                 variants={itemVariants}
                 initial="hidden"
                 whileInView="show"
                 viewport={itemViewport}
               >
-                <Link href={project.href} className="block group">
+                <Link href={project.href} className="block group ">
                   {project.isStatic ? (
                     <Image
                       src={`/images/projetos/${project.image}.png`}

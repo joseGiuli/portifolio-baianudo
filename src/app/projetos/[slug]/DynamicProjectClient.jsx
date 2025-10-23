@@ -213,6 +213,30 @@ export default function DynamicProjectClient({ slug }) {
                     </div>
                   );
 
+                case 'LIST':
+                  // Selecionar itens baseados no idioma
+                  const listItems = isPt
+                    ? block.itemsPt || block.items
+                    : block.itemsEn || block.items;
+
+                  // Filtrar itens vazios
+                  const validListItems = (listItems || []).filter(item =>
+                    item?.trim(),
+                  );
+
+                  if (validListItems.length === 0) return null;
+
+                  return (
+                    <ul
+                      key={block.id || index}
+                      className="list-disc marker:text-neutral text-neutral pl-6 space-y-6 text-[22px] lg:text-lg leading-10"
+                    >
+                      {validListItems.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  );
+
                 case 'DIVIDER':
                   return (
                     <div key={block.id || index} className="my-12 relative">

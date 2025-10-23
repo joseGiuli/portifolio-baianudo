@@ -12,7 +12,7 @@ export default function CaseHero({
   className = '',
 }) {
   return (
-    <section className={`relative -lg:pt-20 ${className}`}>
+    <section className={`relative -lg:pt-20 w-full  ${className}`}>
       <div className="mb-6">
         <Link
           href="/#projetos"
